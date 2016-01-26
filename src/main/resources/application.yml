@@ -1,0 +1,14 @@
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: 'create-update'
+  database:
+    driverClassName: 'org.postgresql.Driver'
+  datasource:
+    platform: 'postgres'
+    url: 'jdbc:postgresql://localhost/publications'
+    username: 'publications'
+    password: 'publications'
