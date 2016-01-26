@@ -10,10 +10,10 @@ import java.util.Collection;
  */
 public class PublicationsUserDetails extends org.springframework.security.core.userdetails.User {
 
-    def User user;
+    User user
 
     public PublicationsUserDetails(User user) {
-        super(user.emailAddress, user.passwordHash, AuthorityUtils.createAuthorityList());
-        this.user = user;
+        super(user.emailAddress, user.passwordHash, AuthorityUtils.createAuthorityList())
+        this.user = user
     }
 }

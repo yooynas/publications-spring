@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface DocumentRepository extends PagingAndSortingRepository<Document, String> {
-    def List<Document> findAllByUser(User user)
+    List<Document> findAllByUser(User user)
 }

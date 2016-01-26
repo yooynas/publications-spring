@@ -16,16 +16,16 @@ import javax.inject.Named
 class PublicationsUserDetailsService implements UserDetailsService {
 
     @Inject
-    def UserRepository userRepository
+    UserRepository userRepository
 
     @Override
-    def UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         def user = userRepository.findOneByEmailAddress(username)
 
         if (user == null) {
-            throw new UsernameNotFoundException("User with that email not found");
+            throw new UsernameNotFoundException('User with that email not found')
         }
 
-        return new PublicationsUserDetails(user);
+        return new PublicationsUserDetails(user)
     }
 }

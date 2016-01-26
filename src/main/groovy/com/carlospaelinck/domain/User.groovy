@@ -1,6 +1,7 @@
 package com.carlospaelinck.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonSetter
 import org.hibernate.annotations.GenericGenerator
 
@@ -24,21 +25,33 @@ class User {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    def String id
+    String id
 
     @NotNull
     @Column(unique=true)
-    def String emailAddress
+    String emailAddress
 
     @NotNull
-    def String passwordHash
+    @JsonIgnore
+    String passwordHash
 
     @Transient
-    def String password
+    String password
 
     @NotNull
-    def Boolean temporary
+    Boolean temporary
 
     @OneToMany(targetEntity = Document.class, mappedBy = 'user')
-    def List<Document> documents
+    @JsonIgnore
+    List<Document> documents
+
+    @JsonIgnore
+    String getPassword() {
+        return password
+    }
+
+    @JsonProperty
+    void setPassword(String password) {
+        this.password = password
+    }
 }

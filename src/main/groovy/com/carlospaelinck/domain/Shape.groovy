@@ -7,27 +7,21 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
-import javax.validation.constraints.Max
-import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
 /**
- * Created by carlos13 on 1/25/16.
+ * Created by carlos13 on 1/26/16.
  */
+
 @Entity
-class Document {
+class Shape {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     String id
 
-    @ManyToOne(targetEntity = User.class)
-    @JsonIgnore
-    User user
-
     @NotNull
-    String name
+    String type
 
     @NotNull
     Float width
@@ -35,6 +29,26 @@ class Document {
     @NotNull
     Float height
 
-    @OneToMany(targetEntity = Shape.class)
-    List<Shape> shapes
+    @NotNull
+    Float x
+
+    @NotNull
+    Float y
+
+    Float r
+    Float angle
+    Float strokeWidth
+
+    String fill
+    String color
+    String stroke
+    Float fillOpacity
+    Float strokeOpacity
+
+    String text
+    String fontFamily
+    Integer fontSize
+    String fontWeight
+    String fontStyle
+    String textAlign
 }
