@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 
 import javax.inject.Inject
 
-/**
- * Created by carlos13 on 1/25/16.
- */
-
 @RestController
 @RequestMapping(value = '/documents')
 class DocumentController {

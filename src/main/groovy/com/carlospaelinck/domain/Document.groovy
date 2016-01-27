@@ -13,9 +13,6 @@ import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
-/**
- * Created by carlos13 on 1/25/16.
- */
 @Entity
 class Document {
     @Id

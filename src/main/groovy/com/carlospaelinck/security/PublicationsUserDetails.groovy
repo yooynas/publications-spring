@@ -5,9 +5,6 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 import java.util.Collection;
 
-/**
- * Created by carlos13 on 1/25/16.
- */
 public class PublicationsUserDetails extends org.springframework.security.core.userdetails.User {
 
     User user

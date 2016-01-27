@@ -9,9 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import javax.inject.Inject
 import javax.inject.Named
 
-/**
- * Created by carlos13 on 1/25/16.
- */
 @Named
 class PublicationsUserDetailsService implements UserDetailsService {
 

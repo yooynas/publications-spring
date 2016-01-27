@@ -9,10 +9,6 @@ import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.validation.constraints.NotNull
 
-/**
- * Created by carlos13 on 1/26/16.
- */
-
 @Entity
 class Shape {
     @Id

@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.RestController
 import javax.inject.Inject
 import javax.validation.Valid
 
-/**
- * Created by carlos13 on 1/25/16.
- */
-
 @RestController
 @RequestMapping(value = '/users')
 class UserController {

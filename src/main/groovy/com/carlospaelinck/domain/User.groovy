@@ -16,9 +16,6 @@ import javax.persistence.Transient
 import javax.persistence.UniqueConstraint
 import javax.validation.constraints.NotNull
 
-/**
- * Created by carlos13 on 1/25/16.
- */
 @Entity
 @Table(name="\"user\"")
 class User {
