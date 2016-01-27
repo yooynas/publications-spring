@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>80FB11F9-00AE-4D04-BA94-49B5F89C192F</UUID>
-        <nextObjectID>116</nextObjectID>
+        <nextObjectID>118</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -194,7 +194,7 @@
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z113"></relationship>
     </object>
     <object type="LMREQUEST" id="z115">
-        <attribute name="body" type="string">[{"data":{"json":"{\\"name\\":\\"My Document\\",\\"width\\":8.5,\\"height\\":11,\\"shapes\\":[]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"name\\":\\"My Document\\",\\"width\\":8.5,\\"height\\":11,\\"shapes\\":[{\\"type\\":\\"rect\\",\\"width\\":3,\\"height\\":2.25,\\"x\\":1.25,\\"y\\":1.75,\\"fill\\":\\"#333\\"}]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">E302EB9B-8BB4-480D-B2C5-2716012B6C7E</attribute>
         <attribute name="url" type="string">[{"data":{"environmentVariable":"CCF77C92-8C6B-4268-8A2F-2BB3FA0715E0"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/documents"]</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -218,5 +218,31 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z115"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z117">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z118"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z118">
+        <attribute name="uuid" type="string">0F70EC22-E774-41B0-87B6-2008C26311A3</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"CCF77C92-8C6B-4268-8A2F-2BB3FA0715E0"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/documents\\/080cd234-1103-46f6-b145-4c0c0b561b77"]</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"name\\":\\"My Document 2\\",\\"width\\":8.5,\\"height\\":11,\\"shapes\\":[{\\"type\\":\\"rect\\",\\"width\\":3,\\"height\\":2.25,\\"x\\":1.25,\\"y\\":1.75,\\"fill\\":\\"#0000ff\\"}]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">5</attribute>
+        <attribute name="name" type="string">Create Document</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z117"></relationship>
     </object>
 </database>

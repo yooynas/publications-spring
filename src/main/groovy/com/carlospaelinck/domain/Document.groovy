@@ -3,6 +3,7 @@ package com.carlospaelinck.domain
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.GenericGenerator
 
+import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -22,8 +23,9 @@ class Document {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     String id
 
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class, optional = false)
     @JsonIgnore
+    @NotNull
     User user
 
     @NotNull
@@ -35,6 +37,6 @@ class Document {
     @NotNull
     Float height
 
-    @OneToMany(targetEntity = Shape.class)
+    @OneToMany(targetEntity = Shape.class, cascade = CascadeType.ALL)
     List<Shape> shapes
 }
