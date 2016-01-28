@@ -39,4 +39,10 @@ class DocumentController {
         document.user = userDetails.user
         return documentService.update(document)
     }
+
+    @RequestMapping(value = '/{documentId}/pdf', method = RequestMethod.GET)
+    def pdf(@PathVariable('documentId') String documentId) {
+        def file = documentService.pdf(documentId)
+        println(file.toString())
+    }
 }

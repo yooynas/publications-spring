@@ -42,6 +42,7 @@ dependencies {
 	compile('org.springframework.session:spring-session')
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.itextpdf:itextpdf:5.5.8')
 	compile('org.codehaus.groovy:groovy')
 	compile('javax.inject:javax.inject:1')
 	runtime('com.h2database:h2')

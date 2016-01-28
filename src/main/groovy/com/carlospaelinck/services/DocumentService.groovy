@@ -5,9 +5,11 @@ import com.carlospaelinck.domain.User
 
 interface DocumentService {
 
-    Document findAllByUser(User user)
+    List<Document> findAllByUser(User user)
 
     Document create(Document document)
 
     Document update(Document document)
+
+    File pdf(String documentId)
 }
