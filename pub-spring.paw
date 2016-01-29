@@ -254,7 +254,6 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"json":"{\\"name\\":\\"My Document 2\\",\\"width\\":8.5,\\"height\\":11,\\"shapes\\":[{\\"type\\":\\"rect\\",\\"width\\":3,\\"height\\":2.25,\\"x\\":1.25,\\"y\\":1.75,\\"fill\\":\\"#0000ff\\"}]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">6</attribute>
         <attribute name="name" type="string">PDF</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
