@@ -33,6 +33,16 @@ class DocumentController {
         return documentService.create(document)
     }
 
+    @RequestMapping(value = '/{documentId}', method = RequestMethod.GET)
+    Document get(@PathVariable('documentId') String documentId) {
+        return documentService.get(documentId)
+    }
+
+    @RequestMapping(value = '/{documentId}', method = RequestMethod.DELETE)
+    Void delete(@PathVariable('documentId') String documentId) {
+        documentService.delete(documentId)
+    }
+
     @RequestMapping(value = '/{documentId}', method = RequestMethod.PUT)
     Document update(@AuthenticationPrincipal PublicationsUserDetails userDetails, @PathVariable('documentId') String documentId, @RequestBody Document document) {
         document.id = documentId

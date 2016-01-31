@@ -2,9 +2,11 @@ package com.carlospaelinck.controllers
 
 import com.carlospaelinck.domain.User
 import com.carlospaelinck.repositories.UserRepository
+import com.carlospaelinck.security.PublicationsUserDetails
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.context.SecurityContext
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -30,14 +32,19 @@ class UserController {
         return userRepository.findAll()
     }
 
+    @RequestMapping(value = '/current', method = RequestMethod.GET)
+    User current(@AuthenticationPrincipal PublicationsUserDetails userDetails) {
+        return userRepository.findOneByEmailAddress(userDetails.user.emailAddress)
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     User create(@RequestBody User user) {
         user.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPassword()))
         return userRepository.save(user)
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    void login(@RequestBody User user) {
+    @RequestMapping(value = '/login', method = RequestMethod.POST)
+    User login(@RequestBody User user) {
         UsernamePasswordAuthenticationToken authRequest =
                 new UsernamePasswordAuthenticationToken(user.emailAddress, user.password)
 
@@ -45,6 +52,6 @@ class UserController {
         def authentication = authenticationManager.authenticate(authRequest)
         SecurityContext securityContext = SecurityContextHolder.getContext()
         securityContext.setAuthentication(authentication)
-
+        return userRepository.findOneByEmailAddress(user.emailAddress)
     }
 }

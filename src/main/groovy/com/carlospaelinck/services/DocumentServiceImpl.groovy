@@ -26,6 +26,11 @@ class DocumentServiceImpl implements DocumentService {
     DocumentRepository documentRepository
 
     @Override
+    Document get(String id) {
+        return documentRepository.findOne(id)
+    }
+
+    @Override
     List<Document> findAllByUser(User user) {
         documentRepository.findAllByUser(user)
     }
@@ -38,6 +43,12 @@ class DocumentServiceImpl implements DocumentService {
     @Override
     Document update(Document document) {
         return documentRepository.save(document)
+    }
+
+    @Override
+    Void delete(String id) {
+        def document = documentRepository.findOne(id)
+        documentRepository.delete(document)
     }
 
     @Override
