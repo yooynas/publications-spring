@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 import javax.inject.Inject
+import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
 
 @RestController
@@ -53,5 +54,11 @@ class UserController {
         SecurityContext securityContext = SecurityContextHolder.getContext()
         securityContext.setAuthentication(authentication)
         return userRepository.findOneByEmailAddress(user.emailAddress)
+    }
+
+    @RequestMapping(value = '/logout', method = RequestMethod.POST)
+    def logout(HttpServletRequest request) {
+        SecurityContextHolder.getContext().setAuthentication(null)
+        request.logout()
     }
 }

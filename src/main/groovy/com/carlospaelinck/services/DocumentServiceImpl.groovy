@@ -11,6 +11,8 @@ import com.itextpdf.text.pdf.ColumnText
 import com.itextpdf.text.pdf.PdfGState
 import com.itextpdf.text.pdf.PdfLayer
 import com.itextpdf.text.pdf.PdfWriter
+import org.springframework.security.access.prepost.PostAuthorize
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
 
 import javax.inject.Inject
@@ -20,12 +22,13 @@ import java.awt.Color
 @Service
 @Transactional
 class DocumentServiceImpl implements DocumentService {
-    final Float DPI = 72
+    public static final Float DPI = 72
 
     @Inject
     DocumentRepository documentRepository
 
     @Override
+    @PostAuthorize('isOwner(returnObject)')
     Document get(String id) {
         return documentRepository.findOne(id)
     }
@@ -41,19 +44,22 @@ class DocumentServiceImpl implements DocumentService {
     }
 
     @Override
+    @PreAuthorize('isOwner(this.get(#document.id))')
     Document update(Document document) {
         return documentRepository.save(document)
     }
 
     @Override
+    @PreAuthorize('isOwner(this.get(#documentId))')
     Void delete(String id) {
-        def document = documentRepository.findOne(id)
+        def document = get(id)
         documentRepository.delete(document)
     }
 
     @Override
+    @PreAuthorize('isOwner(this.get(#documentId))')
     File pdf(String documentId) {
-        def document = documentRepository.findOne(documentId)
+        def document = get(documentId)
         def file = File.createTempFile(document.id, '.pdf')
         def outputStream = new FileOutputStream(file)
         def docRect = new Rectangle((float)(document.width * DPI), (float)(document.height * DPI))
