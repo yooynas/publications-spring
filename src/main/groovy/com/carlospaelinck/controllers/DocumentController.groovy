@@ -6,6 +6,7 @@ import com.carlospaelinck.domain.User
 import com.carlospaelinck.repositories.DocumentRepository
 import com.carlospaelinck.security.PublicationsUserDetails
 import com.carlospaelinck.services.DocumentService
+import org.springframework.core.io.FileSystemResource
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.PathVariable
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 import javax.inject.Inject
+import javax.servlet.http.HttpServletResponse
 
 @RestController
 @RequestMapping(value = '/documents')
@@ -51,8 +53,8 @@ class DocumentController {
     }
 
     @RequestMapping(value = '/{documentId}/pdf', method = RequestMethod.GET)
-    def pdf(@PathVariable('documentId') String documentId) {
+    FileSystemResource pdf(@PathVariable('documentId') String documentId) {
         def file = documentService.pdf(documentId)
-        println(file.toString())
+        return new FileSystemResource(file)
     }
 }
