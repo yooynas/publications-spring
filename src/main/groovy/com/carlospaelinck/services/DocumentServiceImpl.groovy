@@ -40,17 +40,19 @@ class DocumentServiceImpl implements DocumentService {
 
     @Override
     Document create(Document document) {
+        document.lastModified = new Date()
         return documentRepository.save(document)
     }
 
     @Override
     @PreAuthorize('isOwner(this.get(#document.id))')
     Document update(Document document) {
+        document.lastModified = new Date()
         return documentRepository.save(document)
     }
 
     @Override
-    @PreAuthorize('isOwner(this.get(#documentId))')
+    @PreAuthorize('isOwner(this.get(#id))')
     Void delete(String id) {
         def document = get(id)
         documentRepository.delete(document)

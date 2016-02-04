@@ -4,7 +4,7 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: 'validate'
+      ddl-auto: 'update'
   database:
     driverClassName: 'org.postgresql.Driver'
   datasource:

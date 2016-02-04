@@ -34,6 +34,8 @@ class Document {
     @NotNull
     Float height
 
+    Date lastModified
+
     @OneToMany(targetEntity = Shape.class, cascade = CascadeType.ALL)
     List<Shape> shapes
 }

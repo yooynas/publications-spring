@@ -31,6 +31,9 @@ class Shape {
     @NotNull
     Float y
 
+    @NotNull
+    Float z
+
     Float r
     Float angle
     Float strokeWidth

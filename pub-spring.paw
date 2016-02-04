@@ -76,7 +76,7 @@
         <attribute name="name" type="string">Default Jar</attribute>
     </object>
     <object type="LMENVIRONMENTVARIABLEVALUE" id="z104">
-        <attribute name="value" type="string">http://localhost:8080</attribute>
+        <attribute name="value" type="string">http://www.publicationsapp.com/api</attribute>
         <relationship name="environment" type="1/1" destination="LMENVIRONMENT" idrefs="z108"></relationship>
         <relationship name="variable" type="1/1" destination="LMENVIRONMENTVARIABLE" idrefs="z105"></relationship>
     </object>
@@ -88,7 +88,7 @@
         <relationship name="values" type="0/0" destination="LMENVIRONMENTVARIABLEVALUE" idrefs="z104"></relationship>
     </object>
     <object type="LMREQUEST" id="z106">
-        <attribute name="body" type="string">[{"data":{"json":"{\\"emailAddress\\":\\"mike@email.com\\",\\"password\\":\\"mike13\\",\\"temporary\\":false,\\"documents\\":[]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"emailAddress\\":\\"carlos@email.com\\",\\"password\\":\\"carlos13\\",\\"temporary\\":false,\\"documents\\":[]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">AC210E7C-E7BE-4265-BC6B-FE57E8702CFF</attribute>
         <attribute name="url" type="string">[{"data":{"environmentVariable":"CCF77C92-8C6B-4268-8A2F-2BB3FA0715E0"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/users"]</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
