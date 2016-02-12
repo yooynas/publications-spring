@@ -1,8 +1,10 @@
 package com.carlospaelinck.controllers
 
 import com.carlospaelinck.domain.User
+import com.carlospaelinck.repositories.DocumentRepository
 import com.carlospaelinck.repositories.UserRepository
 import com.carlospaelinck.security.PublicationsUserDetails
+import com.carlospaelinck.services.DocumentService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
@@ -26,6 +28,9 @@ class UserController {
     UserRepository userRepository
 
     @Inject
+    DocumentService documentService
+
+    @Inject
     AuthenticationManager authenticationManager
 
     @RequestMapping(method = RequestMethod.GET)
@@ -44,6 +49,12 @@ class UserController {
         return userRepository.save(user)
     }
 
+    @RequestMapping(method = RequestMethod.PUT)
+    User update(HttpServletRequest request, @RequestBody User user, @AuthenticationPrincipal PublicationsUserDetails userDetails) {
+        user.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPassword()))
+        return userRepository.save(user)
+    }
+
     @RequestMapping(value = '/login', method = RequestMethod.POST)
     User login(@RequestBody User user) {
         UsernamePasswordAuthenticationToken authRequest =
@@ -57,7 +68,14 @@ class UserController {
     }
 
     @RequestMapping(value = '/logout', method = RequestMethod.POST)
-    def logout(HttpServletRequest request) {
+    def logout(HttpServletRequest request, @AuthenticationPrincipal PublicationsUserDetails userDetails) {
+        def user = userRepository.findOneByEmailAddress(userDetails.user.emailAddress)
+
+        if (user.temporary) {
+            user.documents.forEach({doc -> documentService.delete(doc.id)})
+            userRepository.delete(user)
+        }
+
         SecurityContextHolder.getContext().setAuthentication(null)
         request.logout()
     }
