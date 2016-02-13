@@ -2,13 +2,10 @@ package com.carlospaelinck.controllers
 
 
 import com.carlospaelinck.domain.Document
-import com.carlospaelinck.domain.User
-import com.carlospaelinck.repositories.DocumentRepository
 import com.carlospaelinck.security.PublicationsUserDetails
 import com.carlospaelinck.services.DocumentService
 import org.springframework.core.io.FileSystemResource
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
