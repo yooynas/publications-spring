@@ -37,11 +37,9 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    User update(PublicationsUserDetails userDetails, User user) {
-        userDetails.user.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPassword()))
-        userDetails.user.emailAddress = user.emailAddress
-        userDetails.user.temporary = user.temporary
-        return userRepository.save(userDetails.user)
+    User update(User user) {
+        user.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPassword()))
+        return userRepository.save(user)
     }
 
     @Override
@@ -57,8 +55,8 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
-    def logout(PublicationsUserDetails userDetails) {
-        def user = userRepository.findOneByEmailAddress(userDetails.user.emailAddress)
+    def logout(String emailAddress) {
+        def user = userRepository.findOneByEmailAddress(emailAddress)
 
         if (user.temporary) {
             user.documents.forEach({doc -> documentService.delete(doc.id)})

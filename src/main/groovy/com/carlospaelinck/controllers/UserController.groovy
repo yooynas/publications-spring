@@ -31,7 +31,14 @@ class UserController {
 
     @RequestMapping(method = RequestMethod.PUT)
     User update(HttpServletRequest request, @RequestBody User user, @AuthenticationPrincipal PublicationsUserDetails userDetails) {
-        return userService.update(userDetails, user)
+        try {
+            def updatedUser = userService.update(user)
+            userDetails.user = updatedUser
+            return updatedUser
+
+        } catch (IllegalArgumentException exception) {
+            throw exception
+        }
     }
 
     @RequestMapping(value = '/login', method = RequestMethod.POST)
@@ -41,7 +48,7 @@ class UserController {
 
     @RequestMapping(value = '/logout', method = RequestMethod.POST)
     def logout(HttpServletRequest request, @AuthenticationPrincipal PublicationsUserDetails userDetails) {
-        userService.logout(userDetails)
+        userService.logout(userDetails.user.emailAddress)
         request.logout()
     }
 }

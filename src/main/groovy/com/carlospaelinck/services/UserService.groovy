@@ -1,7 +1,6 @@
 package com.carlospaelinck.services
 
 import com.carlospaelinck.domain.User
-import com.carlospaelinck.security.PublicationsUserDetails
 
 interface UserService {
 
@@ -9,9 +8,9 @@ interface UserService {
 
     User create(User user)
 
-    User update(PublicationsUserDetails userDetails, User user)
+    User update(User user)
 
     User login(User user)
 
-    def logout(PublicationsUserDetails userDetails)
+    def logout(String emailAddress)
 }
