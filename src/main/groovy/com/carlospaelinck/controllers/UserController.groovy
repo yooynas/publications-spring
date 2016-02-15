@@ -1,6 +1,7 @@
 package com.carlospaelinck.controllers
 
 import com.carlospaelinck.domain.User
+import com.carlospaelinck.exceptions.ConflictException
 import com.carlospaelinck.repositories.UserRepository
 import com.carlospaelinck.security.PublicationsUserDetails
 import com.carlospaelinck.services.UserService
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 
 import javax.inject.Inject
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 @RestController
 @RequestMapping(value = '/users')
@@ -21,7 +23,7 @@ class UserController {
 
     @RequestMapping(value = '/current', method = RequestMethod.GET)
     User current(@AuthenticationPrincipal PublicationsUserDetails userDetails) {
-        return userService.current(userDetails.user.emailAddress)
+        return userService.get(userDetails.user.emailAddress)
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -31,13 +33,13 @@ class UserController {
 
     @RequestMapping(method = RequestMethod.PUT)
     User update(HttpServletRequest request, @RequestBody User user, @AuthenticationPrincipal PublicationsUserDetails userDetails) {
-        try {
+        if (userDetails.user.temporary && userService.get(user.emailAddress) != null) {
+            throw new ConflictException()
+
+        } else {
             def updatedUser = userService.update(user)
             userDetails.user = updatedUser
             return updatedUser
-
-        } catch (IllegalArgumentException exception) {
-            throw exception
         }
     }
 

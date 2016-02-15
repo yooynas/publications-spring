@@ -4,7 +4,7 @@ import com.carlospaelinck.domain.User
 
 interface UserService {
 
-    User current(String emailAddress)
+    User get(String emailAddress)
 
     User create(User user)
 

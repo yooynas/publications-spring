@@ -26,7 +26,7 @@ class UserServiceImpl implements UserService {
     AuthenticationManager authenticationManager
 
     @Override
-    User current(String emailAddress) {
+    User get(String emailAddress) {
         return userRepository.findOneByEmailAddress(emailAddress)
     }
 
